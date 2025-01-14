@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Loading main css file -->
+  </head>
+
+  <body>
+    <div class="site-content">
+      <div class="site-header">
+        <div class="container">
+          <a href="{% url 'home' %}" class="branding">
+            <img src="{%static 'images/logo.png' %}" alt="" class="logo">
+            <div class="logo-type">
+              <h1 class="site-title"> SkyCast </h1>
+              <small class="site-description">Real time weather forecast</small>
+            </div>
+          </a>
+
+          <!-- Default snippet for navigation -->
+          <div class="main-navigation">
+            <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+            <ul class="menu">
+              <li class="menu-item current-menu-item" id="omar"><a href="{% url 'home' %}">Home</a></li>
+            </ul> <!-- .menu -->
+          </div> <!-- .main-navigation -->
+
+          <div class="mobile-navigation"></div>
+        </div>
+      </div> <!-- .site-header -->
+
+      <div class="hero" data-bg-image="{% static 'images/banner.png' %}">
+        <div class="container">
+          <form action="{% url 'result' %}" class="find-location" method="post">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter your city name..." required>
+            <input type="submit" value="Find">
+          </form>
+        </div>
+      </div>
+      
+      {% block content %}
+      {% endblock content %}
+
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <form action="#" class="subscribe-form">
+                <input type="text" placeholder="Enter your email..." required>
+                <input type="submit" value="Subscribe" required>
+              </form>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+              <div class="social-links" style="display: flex; align-items: center;">
+                <a href="https://open.spotify.com/playlist/3IDvNxdi4zYhFcZj0kTvg7?utm_source=generator" target="_blank" style="margin-right: 15px;">
+                  <i class="fab fa-spotify" style="font-size: 48px; color: #1DB954;"></i>
+                </a>
+                <a href="https://embed.music.apple.com/za/playlist/thunderstorms/pl.081a158be181420da5491ba336e8b74a" target="_blank" style="margin-right: 15px;">
+                  <i class="fab fa-apple" style="font-size: 48px; color: #000;"></i>
+                </a>
+                <a target="_blank" href="https://www.facebook.com/goitsemang.tshotlhang.5/" style="margin-right: 15px;">
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a target="_blank" href="https://www.instagram.com/__theunknowngfx/?hl=en" style="margin-right: 15px;">
+                  <i class="fa fa-instagram"></i>
+                </a>
+                <a target="_blank" href="https://x.com/RealCray_G" style="margin-right: 15px;">
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/goitsemangtshotlhang/" style="margin-right: 15px;">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p class="colophon">Copyright 2024, All rights reserved SkyCast</p>
+        </div>
+      </footer> <!-- .site-footer -->
+    </div>
+
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>
